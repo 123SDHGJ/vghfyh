@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JGKKJ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 450px;
+            width: 100%;
+            height: 600px;
+            background: linear-gradient(135deg, rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.8));
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .header {
+            text-align: center;
+            width: 100%;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .subtitle {
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 30px;
+            margin: 20px 0;
+        }
+        
+        .promo-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .promo-button:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .promo-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .promo-button:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .button-1 {
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.7), rgba(0, 242, 254, 0.7));
+        }
+        
+        .button-2 {
+            background: linear-gradient(135deg, rgba(252, 92, 125, 0.7), rgba(106, 130, 251, 0.7));
+        }
+        
+        .button-3 {
+            background: linear-gradient(135deg, rgba(253, 200, 48, 0.7), rgba(243, 115, 53, 0.7));
+        }
+        
+        .button-4 {
+            background: linear-gradient(135deg, rgba(134, 239, 172, 0.7), rgba(59, 130, 246, 0.7));
+        }
+        
+        .button-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .footer {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            text-align: center;
+            width: 100%;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                height: auto;
+                min-height: 500px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>X36A.CC</h1>
+            <p class="subtitle">点击下方按钮了解更多详情</p>
+        </div>
+        
+        <div class="buttons-container">
+            <a href="http://genfcvci.u.czxbw.com/s/15G6DS" class="promo-button button-1" target="_blank">
+                <div class="button-title">西瓜网</div>
+            </a>
+            
+            <a href="http://dsjhfgsdfdgs.cn/syb/" class="promo-button button-2" target="_blank">
+                <div class="button-title">草莓网</div>
+            </a>
+            
+            <a href="http://zetdscy.cn/MjAyLEIwaEFILDE//,*wcte7VEjSSdJNwnXP5.htm" class="promo-button button-3" target="_blank">
+                <div class="button-title">蜜桃网</div>
+            </a>
+            
+            <a href="http://4vglo.work/a/615729?aiMA" class="promo-button button-4" target="_blank">
+                <div class="button-title">哈密瓜</div>
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p></p>
+        </div>
+    </div>
+
+    <script>
+        // 添加点击动画效果
+        document.querySelectorAll('.promo-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // 创建点击效果
+                const effect = document.createElement('div');
+                effect.style.position = 'absolute';
+                effect.style.borderRadius = '50%';
+                effect.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+                effect.style.width = '10px';
+                effect.style.height = '10px';
+                effect.style.left = (e.offsetX - 5) + 'px';
+                effect.style.top = (e.offsetY - 5) + 'px';
+                effect.style.pointerEvents = 'none';
+                effect.style.animation = 'ripple 0.6s linear';
+                
+                this.appendChild(effect);
+                
+                setTimeout(() => {
+                    effect.remove();
+                }, 600);
+            });
+        });
+
+        // 添加CSS动画
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(20);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
