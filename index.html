@@ -1,229 +1,175 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JGKKJ</title>
+    <title>x3x3x3</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, sans-serif; }
+        body { 
+            background: #0f172a; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            overflow-x: hidden; 
+            padding: 30px 20px;
         }
-        
-        body {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+        .container { 
+            max-width: 2200px; 
+            width: 100%; 
+            margin: 0 auto;
+            z-index: 2; 
+            position: relative; 
         }
-        
-        .container {
-            max-width: 450px;
-            width: 100%;
-            height: 600px;
-            background: linear-gradient(135deg, rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.8));
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px 30px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
+        h1.main-title { 
+            text-align: center; 
+            margin-bottom: 4rem; 
+            color: #f8fafc; 
+            font-weight: 300; 
+            font-size: 4rem; 
+            letter-spacing: -0.02em; 
         }
-        
-        .header {
-            text-align: center;
-            width: 100%;
+        h1.main-title span { 
+            background: linear-gradient(90deg, #60a5fa, #c4b5fd); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
         }
-        
-        h1 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(90deg, #4facfe, #00f2fe);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        .cards { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 50px; 
+            margin: 0 auto;
         }
-        
-        .subtitle {
-            font-size: 0.9rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-            line-height: 1.5;
-        }
-        
-        .buttons-container {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            gap: 30px;
-            margin: 20px 0;
-        }
-        
-        .promo-button {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 50px;
+        .card { 
+            width: 360px; 
+            height: 110px; 
+            background: rgba(255, 255, 255, 0.07); 
+            backdrop-filter: blur(10px); 
+            border-radius: 55px / 110px; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            padding: 20px 25px; 
+            display: flex; 
+            flex-direction: row; 
+            align-items: center; 
+            text-align: left; 
+            position: relative; 
+            overflow: hidden; 
+            transition: all 0.5s ease; 
             text-decoration: none;
-            color: white;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
+        }
+        .card::before { 
+            content: ''; 
+            position: absolute; 
+            top: -100%; 
+            left: -100%; 
+            width: 200%; 
+            height: 200%; 
+            background: conic-gradient(transparent, #60a5fa, transparent 30%); 
+            animation: rotate 8s linear infinite; 
+            z-index: -1; 
+            border-radius: inherit; 
+        }
+        .card::after { 
+            content: ''; 
+            position: absolute; 
+            inset: 2px; 
+            background: #0f172a; 
+            border-radius: inherit; 
+            z-index: -1; 
+        }
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
+        .card:hover { 
+            transform: translateY(-5px) scale(1.05); 
+            border-color: rgba(96, 165, 250, 0.4); 
+        }
+        .icon { 
+            font-size: 1.8rem; 
+            margin-right: 18px; 
+            opacity: 0.9; 
+            min-width: 50px; 
+            text-align: center; 
+        }
+        .text-content { 
+            flex: 1; 
             overflow: hidden;
-            width: 100%;
         }
+        h3 { 
+            color: #f1f5f9; 
+            margin-bottom: 5px; 
+            font-weight: 600; 
+            font-size: 1.1rem; 
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        p { 
+            color: #cbd5e1; 
+            line-height: 1.4; 
+            font-size: 0.8rem; 
+            margin-bottom: 8px; 
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .btn { 
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6); 
+            color: white; 
+            border: none; 
+            padding: 5px 15px; 
+            border-radius: 50px; 
+            font-weight: 600; 
+            font-size: 0.8rem; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); 
+        }
+        .card:hover .btn { 
+            transform: scale(1.05); 
+            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.5); 
+        }
+        .bg-blob { 
+            position: absolute; 
+            width: 400px; 
+            height: 400px; 
+            background: linear-gradient(90deg, #1e40af, #3730a3); 
+            border-radius: 50%; 
+            filter: blur(60px); 
+            opacity: 0.15; 
+            z-index: 1; 
+            animation: float 20s ease-in-out infinite; 
+        }
+        .blob1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .blob2 { bottom: 10%; right: 10%; background: linear-gradient(90deg, #7c3aed, #db2777); animation-delay: -10s; }
+        @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-30px, -40px) scale(1.05); } }
         
-        .promo-button:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        @media (max-width: 2200px) { .container { max-width: 1800px; } }
+        @media (max-width: 1800px) { .cards { gap: 40px; } }
+        @media (max-width: 1600px) { .container { max-width: 1400px; } .cards { gap: 35px; } }
+        @media (max-width: 1400px) { .cards { gap: 30px; } }
+        @media (max-width: 1200px) { .cards { gap: 25px; } }
+        @media (max-width: 992px) { .cards { gap: 20px; } }
+        @media (max-width: 768px) {
+            h1.main-title { font-size: 2.5rem; margin-bottom: 3rem; }
+            .cards { gap: 15px; }
+            .card { width: 100%; max-width: 360px; height: 105px; padding: 15px 20px; }
+            .icon { font-size: 1.6rem; margin-right: 15px; min-width: 45px; }
         }
-        
-        .promo-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s;
-        }
-        
-        .promo-button:hover::before {
-            transform: translateX(100%);
-        }
-        
-        .button-1 {
-            background: linear-gradient(135deg, rgba(79, 172, 254, 0.7), rgba(0, 242, 254, 0.7));
-        }
-        
-        .button-2 {
-            background: linear-gradient(135deg, rgba(252, 92, 125, 0.7), rgba(106, 130, 251, 0.7));
-        }
-        
-        .button-3 {
-            background: linear-gradient(135deg, rgba(253, 200, 48, 0.7), rgba(243, 115, 53, 0.7));
-        }
-        
-        .button-4 {
-            background: linear-gradient(135deg, rgba(134, 239, 172, 0.7), rgba(59, 130, 246, 0.7));
-        }
-        
-        .button-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-align: center;
-        }
-        
-        .footer {
-            font-size: 0.8rem;
-            opacity: 0.7;
-            text-align: center;
-            width: 100%;
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                height: auto;
-                min-height: 500px;
-            }
-            
-            h1 {
-                font-size: 1.5rem;
-            }
-        }
+        @media (max-width: 576px) { .cards { gap: 12px; } body { padding: 20px 15px; } h1.main-title { font-size: 2.2rem; } }
     </style>
 </head>
 <body>
+    <div class="bg-blob blob1"></div><div class="bg-blob blob2"></div>
     <div class="container">
-        <div class="header">
-            <h1>X36A.CC</h1>
-            <p class="subtitle">温馨提示；微信扫码进不去换浏览器扫码</p>
-        </div>
-             <div class="buttons-container">
-              <a href="https://jdzsdsrmyy.medical.platform.yungezhinengkeji.com/resource/CommonUploadFiles/2025121919/dcd212f0b501dc944ac05426328d0fe5.html#/?code=aubr96" class="promo-button button-1" target="_blank">
-                <div class="button-title">葡萄网</div>
-                  
-            <a href="http://genfcvci.u.czxbw.com/s/15G6DS" class="promo-button button-1" target="_blank">
-                <div class="button-title">西瓜网</div>
-            </a>
-            
-            <a href="http://dsjhfgsdfdgs.cn/syb/" class="promo-button button-2" target="_blank">
-                <div class="button-title">草莓网</div>
-            </a>
-            
-            <a href="https://mc-public-tz.taizhou.com.cn/87896997243868548326503263773188292.html?atecode=NTAxLERsYTJVLDY" class="promo-button button-3" target="_blank">
-                <div class="button-title">蜜桃网</div>
-            </a>
-            
-            <a href="http://1206.pgzz.wse1l.com/a/626269?7pff" class="promo-button button-4" target="_blank">
-                <div class="button-title">哈密瓜</div>
-            </a>
-        </div>
-        
-        <div class="footer">
-            <p></p>
-        </div>
+        <h1 class="main-title">永久X36A.cc网址</span></h1>
+        <div class="cards">
+            <a href="https://mc-public-tz.taizhou.com.cn/87896997243868548326503263773188292.html?atecode=NTAxLERsYTJVLDY" class="card"><div class="icon">✨</div><div class="text-content"><h3>人兽深度</h3><p>令晚电影都有</p><div class="btn">点我这里</div></div></a>      
+            <a href="http://dsjhfgsdfdgs.cn/syb/" class="card"><div class="icon">🌌</div><div class="text-content"><h3>野战深度</h3><p>令晚电影都有</p><div class="btn">点我这里</div></div></a>
+            <a href="https://jdzsdsrmyy.medical.platform.yungezhinengkeji.com/resource/CommonUploadFiles/2025121919/dcd212f0b501dc944ac05426328d0fe5.html#/?code=aubr96" class="card"><div class="icon">🌀</div><div class="text-content"><h3>人妻深度</h3><p>令晚电影都有</p><div class="btn">点我这里</div></div></a>
+            <a href="http://1206.pgzz.wse1l.com/a/626269?7pff" class="card"><div class="icon">💧</div><div class="text-content"><h3>幼女深度</h3><p>令晚电影都有</p><div class="btn">点我这里</div></div></a>
+            <a href="http://genfcvci.u.czxbw.com/s/15G6DS" class="card"><div class="icon">🔮</div><div class="text-content"><h3>乱战深度</h3><p>令晚电影都有</p><div class="btn">点我这里</div></div></a>
+          </div>  
     </div>
-
-    <script>
-        // 添加点击动画效果
-        document.querySelectorAll('.promo-button').forEach(button => {
-            button.addEventListener('click', function(e) {
-                // 创建点击效果
-                const effect = document.createElement('div');
-                effect.style.position = 'absolute';
-                effect.style.borderRadius = '50%';
-                effect.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
-                effect.style.width = '10px';
-                effect.style.height = '10px';
-                effect.style.left = (e.offsetX - 5) + 'px';
-                effect.style.top = (e.offsetY - 5) + 'px';
-                effect.style.pointerEvents = 'none';
-                effect.style.animation = 'ripple 0.6s linear';
-                
-                this.appendChild(effect);
-                
-                setTimeout(() => {
-                    effect.remove();
-                }, 600);
-            });
-        });
-
-        // 添加CSS动画
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(20);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
