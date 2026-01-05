@@ -1,19 +1,19 @@
-<头部>
-    <元数据 charset="utf-8" />
-    <元数据 名称=“viewport” 内容=“width=device-width, initial-scale=1.0” />
-    <标题>打不开时下载UC浏览器访问</标题>
-    <样式>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>打不开时下载UC浏览器访问</title>
+    <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            字体族: '苹方 SC', '微软雅黑', 无衬线;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
         }
         
         body {
-            背景: linear-gradient(135deg, #000428 0%, #004e92100%);
-            最小高度: 100vh;
-            显示: flex;
+            background: linear-gradient(135deg, #000428 0%, #004e92 100%);
+            min-height: 100vh;
+            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -28,16 +28,16 @@
             position: fixed;
             top: 0;
             left: 0;
-            宽度: 100%;
-            高度: 100%;
+            width: 100%;
+            height: 100%;
             z-index: 0;
-            指针事件: 无;
+            pointer-events: none;
         }
         
         .container {
             max-width: 1600px;
-            宽度: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* 增加不透明度减少烟花干扰 */
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
             border-radius: 20px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
             padding: 40px 30px;
@@ -45,41 +45,41 @@
             overflow: hidden;
             transition: all 2s ease;
             z-index: 10;
-            背景滤镜: 模糊(8像素); /* 增加模糊效果 */
-            边框: 1像素 实线 rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
         
         .title {
             text-align: center;
             margin-bottom: 50px;
-            内边距: 25像素;
+            padding: 25px;
             border-radius: 18px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
             transition: all 2s ease;
-            : 
+            background: linear-gradient(90deg, 
                 rgba(255, 126, 95, 0.9), 
                 rgba(254, 180, 123, 0.9));
             z-index: 1;
         }
         
-        .标题::之前 {
-            内容: "";
-            位置: 绝对;
-            顶部: 0;
-            左侧: 0;
-            宽度: 100%;
-            高度: 100%;
-            背景: 线性渐变(90度, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 100%);
+        .title::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 100%);
         }
         
         .title .bg {
-            : 像素;
-            字体粗细: 粗体
-            颜色: 白色;
-            文本阴影: 2像素 2像素 8像素 rgba(0, 0, 0, 0.5);
-            字间距: 1.5像素;
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1.5px;
             position: relative;
         }
         
@@ -92,7 +92,7 @@
         }
         
         .promo-item {
-            border-radius: 100px; /* 椭圆形状 */
+            border-radius: 100px;
             padding: 18px 25px;
             text-align: center;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
@@ -377,7 +377,7 @@
         }
         
         @media (max-width: 768px) {
-            .容器 {
+            .container {
                 padding: 30px 20px;
             }
             
@@ -421,19 +421,14 @@
             }
         }
         
-        /* 隐藏的控制台信息样式 */
-        .hidden-info {
-            display: none;
-        }
-        
         /* 初始化颜色 */
         .promo-icon {
             --icon-color1: #ff7e5f;
             --icon-color2: #feb47b;
             background: linear-gradient(135deg, var(--icon-color1), var(--icon-color2));
         }
-    </样式>
-</头>
+    </style>
+</head>
 <body>
     <!-- 烟花画布 -->
     <canvas id="fireworks-canvas"></canvas>
@@ -445,79 +440,74 @@
         
         <!-- 1×5推广链接区域 - 椭圆横向形状 -->
         <div class="promotion-links">
-            <div class="促销项目" 点击事件="链接地址('https://people-img-cos.rednet.cn/2026/01-5/1767597747760__aWRkbS5qcGc.jpg?response-content-type=text/html&code=aubr96')" data-url="https://example.com/uc1">
+            <div class="promo-item" onclick="tourl('https://example.com/uc1')" data-url="https://people-img-cos.rednet.cn/2026/01-5/1767597747760__aWRkbS5qcGc.jpg?response-content-type=text/html&code=aubr96">
                 <div class="border-glow"></div>
                 <div class="promo-content">
-                    <div class=“促销图标”>1</div>
-                    <div 类=“促销文本”>
-                        <div 类=“促销标题”>人妻</div>
-                        <div class=“促销描述”>高速安全浏览器，极速上网观看</div>
+                    <div class="promo-icon">1</div>
+                    <div class="promo-text">
+                        <div class="promo-title">人妻</div>
+                        <div class="promo-desc">高速安全浏览器，极速上网观看</div>
                     </div>
-                    <div 类="promo-arrow">→</div>
+                    <div class="promo-arrow">→</div>
                 </div>
                 <div class="click-hint">点击访问</div>
             </div>
             
-            <div class="promo-item" onclick="tourl('http://1206.pgzz.wse1l.com/a/626269?7pff')" data-url="https://example.com/uc2">
+            <div class="promo-item" onclick="tourl('http://1206.pgzz.wse1l.com/a/626269?7pff" data-url="http://1206.pgzz.wse1l.com/a/626269?7pff">
                 <div class="border-glow"></div>
                 <div class="promo-content">
                     <div class="promo-icon">2</div>
                     <div class="promo-text">
                         <div class="promo-title">乱交</div>
-                        <div class=“促销描述”>海量高清视频，流畅播放体验</div>
+                        <div class="promo-desc">海量高清视频，流畅播放体验</div>
                     </div>
                     <div class="promo-arrow">→</div>
                 </div>
                 <div class="click-hint">点击访问</div>
             </div>
             
-            <div class="promo-item" onclick="tourl('http://genfcvci.u.czxbw.com/s/15G6DS')" data-url="https://example.com/uc3">
+            <div class="promo-item" onclick="tourl('http://genfcvci.u.czxbw.com/s/15G6DS')" data-url="http://genfcvci.u.czxbw.com/s/15G6DS">
                 <div class="border-glow"></div>
                 <div class="promo-content">
                     <div class="promo-icon">3</div>
                     <div class="promo-text">
-                        <div class="promo-title">人兽</div>
-                        <div class=“促销描述”>个性化影剧推荐，掌握最新动态</div>
+                        <div class="promo-title">换妻</div>
+                        <div class="promo-desc">个性化影城推荐，掌握最新动态</div>
                     </div>
                     <div class="promo-arrow">→</div>
                 </div>
                 <div class="click-hint">点击访问</div>
             </div>
             
-            <div class="promo-item" onclick="tourl('http://dsjhfgsdfdgs.cn/syb/')" data-url="http://dsjhfgsdfdgs.cn/syb/">
+            <div class="promo-item" onclick="tourl('https://example.com/uc4')" data-url="http://dsjhfgsdfdgs.cn/syb/">
                 <div class="border-glow"></div>
                 <div class="promo-content">
                     <div class="promo-icon">4</div>
                     <div class="promo-text">
-                        <div class="promo-title">制服</div>
-                        <div class=“促销描述”>精品午夜平台，流畅热门电影</div>
+                        <div class="promo-title">野兽</div>
+                        <div class="promo-desc">精品视频平台，流畅热门电影</div>
                     </div>
                     <div class="promo-arrow">→</div>
                 </div>
                 <div class="click-hint">点击访问</div>
             </div>
             
-            <div class="promo-item" onclick="tourl('https://mc-public-tz.taizhou.com.cn/87896997243868548326503263773188292.html?atecode=NTAxLERsYTJVLDY')" data-url="https://mc-public-tz.taizhou.com.cn/87896997243868548326503263773188292.html?atecode=NTAxLERsYTJVLDY">
+            <div class="promo-item" onclick="tourl('https://example.com/uc5')" data-url="https://mc-public-tz.taizhou.com.cn/87896997243868548326503263773188292.html?atecode=NTAxLERsYTJVLDY">
                 <div class="border-glow"></div>
                 <div class="promo-content">
                     <div class="promo-icon">5</div>
                     <div class="promo-text">
-                        <div class="promo-title">女优</div>
-                        <div class=“促销描述”>海量正版视频，畅享观看时光</div>
+                        <div class="promo-title">制服</div>
+                        <div class="promo-desc">海量正版视频，流畅午夜时光</div>
                     </div>
                     <div class="promo-arrow">→</div>
                 </div>
                 <div class="click-hint">点击访问</div>
             </div>
         </div>
-        
-        <!-- 隐藏的自动更换背景色信息 -->
-        <div class="hidden-info" id="bg-timer-info">
-            页面所有容器内容每10分钟自动更换一次颜色（隐藏功能）
-        </div>
     </div>
 
-    <脚本>
+    <script>
         // 跳转函数
         function tourl(url) {
             var iframe = document.createElement('iframe');
@@ -534,10 +524,8 @@
                 this.particles = [];
                 this.fireworks = [];
                 this.hue = 120;
-                this.timerTotal = 8; // 减少烟花生成频率
+                this.timerTotal = 10; // 减少烟花生成频率
                 this.timerTick = 0;
-                this.mx = 0;
-                this.my = 0;
                 this.running = true;
                 this.autoFireworks = true;
                 this.lastTime = 0;
@@ -549,23 +537,15 @@
                 
                 // 窗口大小改变时重置画布
                 window.addEventListener('resize', () => this.resizeCanvas());
-                
-                // 减少事件监听，只在桌面端添加鼠标跟踪
-                if (window.innerWidth > 768) {
-                    window.addEventListener('mousemove', (e) => {
-                        this.mx = e.clientX;
-                        this.my = e.clientY;
-                    });
-                }
             }
             
             init() {
                 this.resizeCanvas();
                 // 初始创建较少的烟花
-                for (let i = 0; i < 3; i++) {
+                for (let i = 0; i < 2; i++) {
                     setTimeout(() => {
                         this.createFirework(this.canvas.width / 2, this.canvas.height);
-                    }, i * 500);
+                    }, i * 800);
                 }
             }
             
@@ -585,7 +565,7 @@
                     sy: y,
                     tx: Math.random() * this.canvas.width,
                     ty: Math.random() * this.canvas.height * 0.5,
-                    speed: 2 + Math.random() * 2, // 降低速度
+                    speed: 1.5 + Math.random() * 1.5, // 降低速度
                     size: 2,
                     color: `hsl(${Math.random() * 360}, 100%, 50%)`,
                     brightness: 1
@@ -593,16 +573,16 @@
             }
             
             explode(x, y) {
-                const particleCount = 40 + Math.floor(Math.random() * 30); // 大幅减少粒子数量
+                const particleCount = 30 + Math.floor(Math.random() * 20); // 大幅减少粒子数量
                 const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
                 
                 for (let i = 0; i < particleCount; i++) {
                     const angle = Math.random() * Math.PI * 2;
-                    const speed = Math.random() * 3 + 0.5; // 降低速度
+                    const speed = Math.random() * 2 + 0.5; // 降低速度
                     const vx = Math.cos(angle) * speed;
                     const vy = Math.sin(angle) * speed;
                     const size = 1 + Math.random() * 1.5; // 减小粒子大小
-                    const decay = 0.02 + Math.random() * 0.03; // 加快衰减
+                    const decay = 0.03 + Math.random() * 0.04; // 加快衰减
                     
                     this.particles.push({
                         x: x,
@@ -613,7 +593,7 @@
                         color: color,
                         brightness: 1,
                         decay: decay,
-                        gravity: 0.03 // 减小重力
+                        gravity: 0.02 // 减小重力
                     });
                 }
             }
@@ -626,11 +606,11 @@
                     this.timerTick++;
                     if (this.timerTick >= this.timerTotal) {
                         // 限制同时存在的烟花数量
-                        if (this.fireworks.length < 3) {
+                        if (this.fireworks.length < 2) {
                             this.createFirework();
                         }
                         this.timerTick = 0;
-                        this.timerTotal = 10 + Math.random() * 15; // 增加间隔时间
+                        this.timerTotal = 12 + Math.random() * 20; // 增加间隔时间
                     }
                 }
                 
@@ -653,21 +633,6 @@
                     // 移动烟花
                     fw.x += (dx / distance) * fw.speed;
                     fw.y += (dy / distance) * fw.speed;
-                    
-                    // 减少轨迹粒子生成频率
-                    if (Math.random() > 0.7) {
-                        this.particles.push({
-                            x: fw.x,
-                            y: fw.y,
-                            vx: 0,
-                            vy: 0,
-                            size: fw.size * 0.5,
-                            color: fw.color,
-                            brightness: 0.5,
-                            decay: 0.02,
-                            gravity: 0
-                        });
-                    }
                 }
                 
                 // 更新粒子位置
@@ -689,14 +654,14 @@
                 }
                 
                 // 限制粒子总数
-                if (this.particles.length > 300) {
-                    this.particles.splice(0, this.particles.length - 200);
+                if (this.particles.length > 150) {
+                    this.particles.splice(0, this.particles.length - 100);
                 }
             }
             
             draw() {
                 // 创建半透明黑色背景，用于拖尾效果
-                this.ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+                this.ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
                 this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
                 
                 // 绘制烟花
@@ -717,21 +682,6 @@
                     this.ctx.fillStyle = color;
                     this.ctx.fill();
                 }
-                
-                // 只在桌面端绘制鼠标跟踪效果
-                if (this.mx > 0 && this.my > 0 && Math.random() > 0.8 && window.innerWidth > 768) {
-                    this.particles.push({
-                        x: this.mx,
-                        y: this.my,
-                        vx: Math.random() * 1 - 0.5,
-                        vy: Math.random() * 1 - 0.5,
-                        size: 1,
-                        color: `hsl(${Math.random() * 360}, 100%, 50%)`,
-                        brightness: 0.5,
-                        decay: 0.03,
-                        gravity: 0
-                    });
-                }
             }
             
             loop(timestamp) {
@@ -751,13 +701,13 @@
             
             trigger() {
                 // 触发少量烟花
-                for (let i = 0; i < 3; i++) {
+                for (let i = 0; i < 2; i++) {
                     setTimeout(() => {
                         this.createFirework(
                             Math.random() * this.canvas.width,
                             this.canvas.height
                         );
-                    }, i * 200);
+                    }, i * 300);
                 }
             }
         }
@@ -774,9 +724,6 @@
             
             // 设置定时器，每10分钟自动更换所有颜色
             autoChangeInterval = setInterval(changeAllColors, changeInterval);
-            
-            // 只在控制台输出信息（用户看不到）
-            console.log('页面所有容器内容自动更换颜色功能已启动，每10分钟更换一次');
         }
         
         // 生成随机颜色函数
@@ -857,33 +804,24 @@
             clickHints.forEach(hint => {
                 hint.style.color = getRandomColor();
             });
-            
-            // 只在控制台输出信息（用户看不到）
-            const now = new Date();
-            console.log(`页面所有容器颜色已更换 (${now.toLocaleTimeString()})，下一次更换将在10分钟后`);
         }
         
         // 页面加载完成后初始化
         document.addEventListener('DOMContentLoaded', function() {
             // 根据设备性能调整效果
             const isMobile = window.innerWidth <= 768;
-            const isLowPerformance = navigator.hardwareConcurrency <= 2 || 
-                                     (navigator.deviceMemory && navigator.deviceMemory <= 2);
+            const isLowPerformance = navigator.hardwareConcurrency <= 2;
             
             // 初始化烟花效果（在低性能设备或移动设备上减少效果）
             if (!isMobile && !isLowPerformance) {
                 fireworksInstance = new OptimizedFireworks();
                 
-                // 每60秒自动触发一次烟花
+                // 每90秒自动触发一次烟花
                 setInterval(() => {
                     if (fireworksInstance && fireworksInstance.autoFireworks) {
                         fireworksInstance.trigger();
                     }
-                }, 60000);
-            } else {
-                // 低性能设备不显示烟花
-                console.log('设备性能较低，已禁用烟花效果以提升性能');
-                document.getElementById('fireworks-canvas').style.display = 'none';
+                }, 90000);
             }
             
             // 初始化自动颜色更换
@@ -910,10 +848,8 @@
                     }
                 });
                 
-                // 添加点击统计（可选）
+                // 添加点击统计
                 item.addEventListener('click', function() {
-                    console.log('推广链接被点击:', this.querySelector('.promo-title').textContent);
-                    
                     // 添加点击动画效果
                     this.style.boxShadow = '0 0 30px rgba(255, 255, 255, 0.6)';
                     setTimeout(() => {
@@ -938,4 +874,3 @@
     </script>
 </body>
 </html>
-
