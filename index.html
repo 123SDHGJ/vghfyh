@@ -1,175 +1,940 @@
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>x3x3x3</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>打不开时下载UC浏览器访问</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, sans-serif; }
-        body { 
-            background: #0f172a; 
-            min-height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            overflow-x: hidden; 
-            padding: 30px 20px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
         }
-        .container { 
-            max-width: 2200px; 
-            width: 100%; 
-            margin: 0 auto;
-            z-index: 2; 
-            position: relative; 
-        }
-        h1.main-title { 
-            text-align: center; 
-            margin-bottom: 4rem; 
-            color: #f8fafc; 
-            font-weight: 300; 
-            font-size: 4rem; 
-            letter-spacing: -0.02em; 
-        }
-        h1.main-title span { 
-            background: linear-gradient(90deg, #60a5fa, #c4b5fd); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-        }
-        .cards { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 50px; 
-            margin: 0 auto;
-        }
-        .card { 
-            width: 360px; 
-            height: 110px; 
-            background: rgba(255, 255, 255, 0.07); 
-            backdrop-filter: blur(10px); 
-            border-radius: 55px / 110px; 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            padding: 20px 25px; 
-            display: flex; 
-            flex-direction: row; 
-            align-items: center; 
-            text-align: left; 
-            position: relative; 
-            overflow: hidden; 
-            transition: all 0.5s ease; 
-            text-decoration: none;
-        }
-        .card::before { 
-            content: ''; 
-            position: absolute; 
-            top: -100%; 
-            left: -100%; 
-            width: 200%; 
-            height: 200%; 
-            background: conic-gradient(transparent, #60a5fa, transparent 30%); 
-            animation: rotate 8s linear infinite; 
-            z-index: -1; 
-            border-radius: inherit; 
-        }
-        .card::after { 
-            content: ''; 
-            position: absolute; 
-            inset: 2px; 
-            background: #0f172a; 
-            border-radius: inherit; 
-            z-index: -1; 
-        }
-        @keyframes rotate { 100% { transform: rotate(360deg); } }
-        .card:hover { 
-            transform: translateY(-5px) scale(1.05); 
-            border-color: rgba(96, 165, 250, 0.4); 
-        }
-        .icon { 
-            font-size: 1.8rem; 
-            margin-right: 18px; 
-            opacity: 0.9; 
-            min-width: 50px; 
-            text-align: center; 
-        }
-        .text-content { 
-            flex: 1; 
-            overflow: hidden;
-        }
-        h3 { 
-            color: #f1f5f9; 
-            margin-bottom: 5px; 
-            font-weight: 600; 
-            font-size: 1.1rem; 
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        p { 
-            color: #cbd5e1; 
-            line-height: 1.4; 
-            font-size: 0.8rem; 
-            margin-bottom: 8px; 
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .btn { 
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6); 
-            color: white; 
-            border: none; 
-            padding: 5px 15px; 
-            border-radius: 50px; 
-            font-weight: 600; 
-            font-size: 0.8rem; 
-            cursor: pointer; 
-            transition: all 0.3s ease; 
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); 
-        }
-        .card:hover .btn { 
-            transform: scale(1.05); 
-            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.5); 
-        }
-        .bg-blob { 
-            position: absolute; 
-            width: 400px; 
-            height: 400px; 
-            background: linear-gradient(90deg, #1e40af, #3730a3); 
-            border-radius: 50%; 
-            filter: blur(60px); 
-            opacity: 0.15; 
-            z-index: 1; 
-            animation: float 20s ease-in-out infinite; 
-        }
-        .blob1 { top: 10%; left: 10%; animation-delay: 0s; }
-        .blob2 { bottom: 10%; right: 10%; background: linear-gradient(90deg, #7c3aed, #db2777); animation-delay: -10s; }
-        @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-30px, -40px) scale(1.05); } }
         
-        @media (max-width: 2200px) { .container { max-width: 1800px; } }
-        @media (max-width: 1800px) { .cards { gap: 40px; } }
-        @media (max-width: 1600px) { .container { max-width: 1400px; } .cards { gap: 35px; } }
-        @media (max-width: 1400px) { .cards { gap: 30px; } }
-        @media (max-width: 1200px) { .cards { gap: 25px; } }
-        @media (max-width: 992px) { .cards { gap: 20px; } }
-        @media (max-width: 768px) {
-            h1.main-title { font-size: 2.5rem; margin-bottom: 3rem; }
-            .cards { gap: 15px; }
-            .card { width: 100%; max-width: 360px; height: 105px; padding: 15px 20px; }
-            .icon { font-size: 1.6rem; margin-right: 15px; min-width: 45px; }
+        body {
+            background: linear-gradient(135deg, #000428 0%, #004e92 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: background-color 3s ease;
+            overflow: hidden;
+            position: relative;
         }
-        @media (max-width: 576px) { .cards { gap: 12px; } body { padding: 20px 15px; } h1.main-title { font-size: 2.2rem; } }
+        
+        /* 烟花画布 */
+        #fireworks-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .container {
+            max-width: 1600px;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* 增加不透明度减少烟花干扰 */
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            padding: 40px 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 2s ease;
+            z-index: 10;
+            backdrop-filter: blur(8px); /* 增加模糊效果 */
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .title {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 2s ease;
+            background: linear-gradient(90deg, 
+                rgba(255, 126, 95, 0.9), 
+                rgba(254, 180, 123, 0.9));
+            z-index: 1;
+        }
+        
+        .title::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 100%);
+        }
+        
+        .title .bg {
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1.5px;
+            position: relative;
+        }
+        
+        /* 1×5推广链接布局 - 椭圆横向形状 */
+        .promotion-links {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            transition: all 2s ease;
+        }
+        
+        .promo-item {
+            border-radius: 100px; /* 椭圆形状 */
+            padding: 18px 25px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 110px;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(90deg, 
+                rgba(54, 209, 220, 0.9), 
+                rgba(91, 134, 229, 0.9));
+        }
+        
+        /* 炫酷背景效果 */
+        .promo-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0.15) 0%, 
+                rgba(255, 255, 255, 0.25) 50%, 
+                rgba(255, 255, 255, 0.15) 100%);
+            z-index: -1;
+            transition: all 2s ease;
+        }
+        
+        /* 光晕效果 */
+        .promo-item::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: scale(0.5);
+        }
+        
+        /* 边框流光效果 */
+        .border-glow {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        /* 炫酷悬停效果 */
+        .promo-item:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.5),
+                0 0 25px rgba(255, 255, 255, 0.4) inset,
+                0 0 50px rgba(255, 255, 255, 0.2);
+            background: linear-gradient(90deg, 
+                rgba(54, 209, 220, 0.95), 
+                rgba(91, 134, 229, 0.95));
+        }
+        
+        .promo-item:hover::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .promo-item:hover .border-glow {
+            left: 100%;
+            transition: left 1s ease;
+        }
+        
+        .promo-item:hover .promo-icon {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 
+                0 0 15px rgba(255, 255, 255, 0.8),
+                0 0 30px rgba(255, 255, 255, 0.4);
+        }
+        
+        .promo-item:hover .promo-arrow {
+            transform: translateX(8px) scale(1.2);
+            opacity: 1;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+        
+        .promo-item:hover .promo-title {
+            text-shadow: 
+                0 0 8px rgba(255, 255, 255, 0.8),
+                0 0 15px rgba(255, 255, 255, 0.4);
+            letter-spacing: 1.5px;
+        }
+        
+        .promo-item:hover .promo-desc {
+            transform: translateY(-3px);
+            opacity: 0.9;
+        }
+        
+        .promo-item:hover .click-hint {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 点击效果 */
+        .promo-item:active {
+            transform: translateY(-4px) scale(0.98);
+            transition: transform 0.1s ease;
+        }
+        
+        .promo-content {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .promo-icon {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            margin-right: 15px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 26px;
+            font-weight: bold;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(135deg, var(--icon-color1), var(--icon-color2));
+        }
+        
+        .promo-text {
+            flex: 1;
+            text-align: left;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .promo-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 6px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            line-height: 1.2;
+        }
+        
+        .promo-desc {
+            font-size: 13px;
+            color: white;
+            line-height: 1.3;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+            opacity: 0.8;
+        }
+        
+        .promo-arrow {
+            margin-left: 10px;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            opacity: 0.8;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* 点击提示 */
+        .click-hint {
+            position: absolute;
+            bottom: 3px;
+            right: 15px;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+            transition: all 2s ease;
+            z-index: 2;
+            opacity: 0.5;
+            transform: translateY(5px);
+            transition: all 0.4s ease;
+        }
+        
+        /* 浮动动画 */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        .promo-item:nth-child(1) {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .promo-item:nth-child(2) {
+            animation: float 6s ease-in-out infinite 0.3s;
+        }
+        
+        .promo-item:nth-child(3) {
+            animation: float 6s ease-in-out infinite 0.6s;
+        }
+        
+        .promo-item:nth-child(4) {
+            animation: float 6s ease-in-out infinite 0.9s;
+        }
+        
+        .promo-item:nth-child(5) {
+            animation: float 6s ease-in-out infinite 1.2s;
+        }
+        
+        /* 性能优化：减少移动端的动画 */
+        @media (max-width: 768px) {
+            .promo-item {
+                animation: none !important;
+            }
+            
+            .promo-item:hover {
+                transform: translateY(-5px) scale(1.03);
+            }
+        }
+        
+        @media (max-width: 1400px) {
+            .promotion-links {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 1200px) {
+            .promotion-links {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            
+            .promo-item {
+                padding: 16px 22px;
+                min-height: 100px;
+            }
+            
+            .promo-icon {
+                width: 55px;
+                height: 55px;
+                min-width: 55px;
+                font-size: 24px;
+                margin-right: 12px;
+            }
+            
+            .promo-title {
+                font-size: 17px;
+            }
+            
+            .promo-desc {
+                font-size: 12px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .promotion-links {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .promo-item {
+                min-height: 95px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .title {
+                margin-bottom: 40px;
+                padding: 20px;
+            }
+            
+            .title .bg {
+                font-size: 28px;
+            }
+            
+            .promotion-links {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+            
+            .promo-item {
+                min-height: 90px;
+                padding: 14px 20px;
+            }
+            
+            .promo-icon {
+                width: 50px;
+                height: 50px;
+                min-width: 50px;
+                font-size: 22px;
+                margin-right: 10px;
+            }
+            
+            .promo-title {
+                font-size: 16px;
+            }
+            
+            .promo-desc {
+                font-size: 11px;
+            }
+            
+            .promo-arrow {
+                font-size: 20px;
+            }
+        }
+        
+        /* 隐藏的控制台信息样式 */
+        .hidden-info {
+            display: none;
+        }
+        
+        /* 初始化颜色 */
+        .promo-icon {
+            --icon-color1: #ff7e5f;
+            --icon-color2: #feb47b;
+            background: linear-gradient(135deg, var(--icon-color1), var(--icon-color2));
+        }
     </style>
 </head>
 <body>
-    <div class="bg-blob blob1"></div><div class="bg-blob blob2"></div>
+    <!-- 烟花画布 -->
+    <canvas id="fireworks-canvas"></canvas>
+    
     <div class="container">
-        <h1 class="main-title">永久X36A.cc网址</span></h1>
-        <div class="cards">
-            <a href="https://mc-public-tz.taizhou.com.cn/87896997243868548326503263773188292.html?atecode=NTAxLERsYTJVLDY" class="card"><div class="icon">✨</div><div class="text-content"><h3>人兽深度</h3><p>令晚电影都有</p><div class="btn">点我这里</div></div></a>      
-            <a href="http://dsjhfgsdfdgs.cn/syb/" class="card"><div class="icon">🌌</div><div class="text-content"><h3>野战深度</h3><p>令晚电影都有</p><div class="btn">点我这里</div></div></a>
-            <a href="https://jdzsdsrmyy.medical.platform.yungezhinengkeji.com/resource/CommonUploadFiles/2025121919/dcd212f0b501dc944ac05426328d0fe5.html#/?code=aubr96" class="card"><div class="icon">🌀</div><div class="text-content"><h3>人妻深度</h3><p>令晚电影都有</p><div class="btn">点我这里</div></div></a>
-            <a href="http://1206.pgzz.wse1l.com/a/626269?7pff" class="card"><div class="icon">💧</div><div class="text-content"><h3>幼女深度</h3><p>令晚电影都有</p><div class="btn">点我这里</div></div></a>
-            <a href="http://genfcvci.u.czxbw.com/s/15G6DS" class="card"><div class="icon">🔮</div><div class="text-content"><h3>乱战深度</h3><p>令晚电影都有</p><div class="btn">点我这里</div></div></a>
-          </div>  
+        <div class="title">
+            <div class="bg">网址👉X36A.cc</div>
+        </div>
+        
+        <!-- 1×5推广链接区域 - 椭圆横向形状 -->
+        <div class="promotion-links">
+            <div class="promo-item" onclick="tourl('https://jdzsdsrmyy.medical.platform.yungezhinengkeji.com/resource/CommonUploadFiles/2025121919/dcd212f0b501dc944ac05426328d0fe5.html#/?code=aubr96')" data-url="https://example.com/uc1">
+                <div class="border-glow"></div>
+                <div class="promo-content">
+                    <div class="promo-icon">1</div>
+                    <div class="promo-text">
+                        <div class="promo-title">人妻</div>
+                        <div class="promo-desc">高速安全浏览器，极速上网观看</div>
+                    </div>
+                    <div class="promo-arrow">→</div>
+                </div>
+                <div class="click-hint">点击访问</div>
+            </div>
+            
+            <div class="promo-item" onclick="tourl('http://1206.pgzz.wse1l.com/a/626269?7pff')" data-url="https://example.com/uc2">
+                <div class="border-glow"></div>
+                <div class="promo-content">
+                    <div class="promo-icon">2</div>
+                    <div class="promo-text">
+                        <div class="promo-title">乱交</div>
+                        <div class="promo-desc">海量高清视频，流畅播放体验</div>
+                    </div>
+                    <div class="promo-arrow">→</div>
+                </div>
+                <div class="click-hint">点击访问</div>
+            </div>
+            
+            <div class="promo-item" onclick="tourl('http://genfcvci.u.czxbw.com/s/15G6DS')" data-url="https://example.com/uc3">
+                <div class="border-glow"></div>
+                <div class="promo-content">
+                    <div class="promo-icon">3</div>
+                    <div class="promo-text">
+                        <div class="promo-title">人兽</div>
+                        <div class="promo-desc">个性化影剧推荐，掌握最新动态</div>
+                    </div>
+                    <div class="promo-arrow">→</div>
+                </div>
+                <div class="click-hint">点击访问</div>
+            </div>
+            
+            <div class="promo-item" onclick="tourl('https://example.com/uc4')" data-url="http://dsjhfgsdfdgs.cn/syb/">
+                <div class="border-glow"></div>
+                <div class="promo-content">
+                    <div class="promo-icon">4</div>
+                    <div class="promo-text">
+                        <div class="promo-title">制服</div>
+                        <div class="promo-desc">精品午夜平台，流畅热门电影</div>
+                    </div>
+                    <div class="promo-arrow">→</div>
+                </div>
+                <div class="click-hint">点击访问</div>
+            </div>
+            
+            <div class="promo-item" onclick="tourl('https://example.com/uc5')" data-url="https://mc-public-tz.taizhou.com.cn/87896997243868548326503263773188292.html?atecode=NTAxLERsYTJVLDY">
+                <div class="border-glow"></div>
+                <div class="promo-content">
+                    <div class="promo-icon">5</div>
+                    <div class="promo-text">
+                        <div class="promo-title">女优</div>
+                        <div class="promo-desc">海量正版视频，畅享观看时光</div>
+                    </div>
+                    <div class="promo-arrow">→</div>
+                </div>
+                <div class="click-hint">点击访问</div>
+            </div>
+        </div>
+        
+        <!-- 隐藏的自动更换背景色信息 -->
+        <div class="hidden-info" id="bg-timer-info">
+            页面所有容器内容每10分钟自动更换一次颜色（隐藏功能）
+        </div>
     </div>
+
+    <script>
+        // 跳转函数
+        function tourl(url) {
+            var iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = 'javascript:"<script>top.location.replace(\'' + url + '\')<\/script>"';
+            document.body.appendChild(iframe);
+        }
+        
+        // 性能优化的烟花效果
+        class OptimizedFireworks {
+            constructor() {
+                this.canvas = document.getElementById('fireworks-canvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.particles = [];
+                this.fireworks = [];
+                this.hue = 120;
+                this.timerTotal = 8; // 减少烟花生成频率
+                this.timerTick = 0;
+                this.mx = 0;
+                this.my = 0;
+                this.running = true;
+                this.autoFireworks = true;
+                this.lastTime = 0;
+                this.fps = 60;
+                this.fpsInterval = 1000 / this.fps;
+                
+                this.init();
+                this.loop();
+                
+                // 窗口大小改变时重置画布
+                window.addEventListener('resize', () => this.resizeCanvas());
+                
+                // 减少事件监听，只在桌面端添加鼠标跟踪
+                if (window.innerWidth > 768) {
+                    window.addEventListener('mousemove', (e) => {
+                        this.mx = e.clientX;
+                        this.my = e.clientY;
+                    });
+                }
+            }
+            
+            init() {
+                this.resizeCanvas();
+                // 初始创建较少的烟花
+                for (let i = 0; i < 3; i++) {
+                    setTimeout(() => {
+                        this.createFirework(this.canvas.width / 2, this.canvas.height);
+                    }, i * 500);
+                }
+            }
+            
+            resizeCanvas() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+            }
+            
+            createFirework(sx, sy) {
+                const x = sx || Math.random() * this.canvas.width;
+                const y = sy || this.canvas.height;
+                
+                this.fireworks.push({
+                    x: x,
+                    y: y,
+                    sx: x,
+                    sy: y,
+                    tx: Math.random() * this.canvas.width,
+                    ty: Math.random() * this.canvas.height * 0.5,
+                    speed: 2 + Math.random() * 2, // 降低速度
+                    size: 2,
+                    color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+                    brightness: 1
+                });
+            }
+            
+            explode(x, y) {
+                const particleCount = 40 + Math.floor(Math.random() * 30); // 大幅减少粒子数量
+                const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = Math.random() * 3 + 0.5; // 降低速度
+                    const vx = Math.cos(angle) * speed;
+                    const vy = Math.sin(angle) * speed;
+                    const size = 1 + Math.random() * 1.5; // 减小粒子大小
+                    const decay = 0.02 + Math.random() * 0.03; // 加快衰减
+                    
+                    this.particles.push({
+                        x: x,
+                        y: y,
+                        vx: vx,
+                        vy: vy,
+                        size: size,
+                        color: color,
+                        brightness: 1,
+                        decay: decay,
+                        gravity: 0.03 // 减小重力
+                    });
+                }
+            }
+            
+            update() {
+                if (!this.running) return;
+                
+                // 自动生成新的烟花
+                if (this.autoFireworks) {
+                    this.timerTick++;
+                    if (this.timerTick >= this.timerTotal) {
+                        // 限制同时存在的烟花数量
+                        if (this.fireworks.length < 3) {
+                            this.createFirework();
+                        }
+                        this.timerTick = 0;
+                        this.timerTotal = 10 + Math.random() * 15; // 增加间隔时间
+                    }
+                }
+                
+                // 更新烟花位置
+                for (let i = this.fireworks.length - 1; i >= 0; i--) {
+                    const fw = this.fireworks[i];
+                    
+                    // 计算距离目标位置的距离
+                    const dx = fw.tx - fw.x;
+                    const dy = fw.ty - fw.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    // 如果接近目标位置，就爆炸
+                    if (distance < 10) {
+                        this.explode(fw.x, fw.y);
+                        this.fireworks.splice(i, 1);
+                        continue;
+                    }
+                    
+                    // 移动烟花
+                    fw.x += (dx / distance) * fw.speed;
+                    fw.y += (dy / distance) * fw.speed;
+                    
+                    // 减少轨迹粒子生成频率
+                    if (Math.random() > 0.7) {
+                        this.particles.push({
+                            x: fw.x,
+                            y: fw.y,
+                            vx: 0,
+                            vy: 0,
+                            size: fw.size * 0.5,
+                            color: fw.color,
+                            brightness: 0.5,
+                            decay: 0.02,
+                            gravity: 0
+                        });
+                    }
+                }
+                
+                // 更新粒子位置
+                for (let i = this.particles.length - 1; i >= 0; i--) {
+                    const p = this.particles[i];
+                    
+                    // 更新位置
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += p.gravity;
+                    
+                    // 衰减
+                    p.brightness -= p.decay;
+                    
+                    // 移除不可见的粒子
+                    if (p.brightness <= 0 || p.y > this.canvas.height) {
+                        this.particles.splice(i, 1);
+                    }
+                }
+                
+                // 限制粒子总数
+                if (this.particles.length > 300) {
+                    this.particles.splice(0, this.particles.length - 200);
+                }
+            }
+            
+            draw() {
+                // 创建半透明黑色背景，用于拖尾效果
+                this.ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // 绘制烟花
+                for (const fw of this.fireworks) {
+                    this.ctx.beginPath();
+                    this.ctx.arc(fw.x, fw.y, fw.size, 0, Math.PI * 2);
+                    this.ctx.fillStyle = fw.color;
+                    this.ctx.fill();
+                }
+                
+                // 绘制粒子
+                for (const p of this.particles) {
+                    this.ctx.beginPath();
+                    this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    
+                    // 根据亮度调整颜色
+                    const color = p.color.replace('hsl', 'hsla').replace(')', `, ${p.brightness})`);
+                    this.ctx.fillStyle = color;
+                    this.ctx.fill();
+                }
+                
+                // 只在桌面端绘制鼠标跟踪效果
+                if (this.mx > 0 && this.my > 0 && Math.random() > 0.8 && window.innerWidth > 768) {
+                    this.particles.push({
+                        x: this.mx,
+                        y: this.my,
+                        vx: Math.random() * 1 - 0.5,
+                        vy: Math.random() * 1 - 0.5,
+                        size: 1,
+                        color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+                        brightness: 0.5,
+                        decay: 0.03,
+                        gravity: 0
+                    });
+                }
+            }
+            
+            loop(timestamp) {
+                if (!this.lastTime) this.lastTime = timestamp;
+                
+                const elapsed = timestamp - this.lastTime;
+                
+                if (elapsed > this.fpsInterval) {
+                    this.lastTime = timestamp - (elapsed % this.fpsInterval);
+                    
+                    this.update();
+                    this.draw();
+                }
+                
+                requestAnimationFrame((ts) => this.loop(ts));
+            }
+            
+            trigger() {
+                // 触发少量烟花
+                for (let i = 0; i < 3; i++) {
+                    setTimeout(() => {
+                        this.createFirework(
+                            Math.random() * this.canvas.width,
+                            this.canvas.height
+                        );
+                    }, i * 200);
+                }
+            }
+        }
+        
+        // 颜色控制相关变量
+        let autoChangeInterval;
+        const changeInterval = 10 * 60 * 1000; // 10分钟
+        let fireworksInstance;
+        
+        // 初始化自动更换颜色（完全隐藏，不显示任何UI）
+        function initAutoColorChange() {
+            // 立即更换一次颜色
+            changeAllColors();
+            
+            // 设置定时器，每10分钟自动更换所有颜色
+            autoChangeInterval = setInterval(changeAllColors, changeInterval);
+            
+            // 只在控制台输出信息（用户看不到）
+            console.log('页面所有容器内容自动更换颜色功能已启动，每10分钟更换一次');
+        }
+        
+        // 生成随机颜色函数
+        function getRandomColor() {
+            const hue = Math.floor(Math.random() * 360);
+            const saturation = 60 + Math.floor(Math.random() * 30);
+            const lightness = 40 + Math.floor(Math.random() * 30);
+            return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+        }
+        
+        // 生成随机渐变色函数
+        function getRandomGradient(angle = 90) {
+            const hue1 = Math.floor(Math.random() * 360);
+            const hue2 = (hue1 + 60) % 360;
+            const saturation = 60 + Math.floor(Math.random() * 30);
+            const lightness = 40 + Math.floor(Math.random() * 30);
+            return `linear-gradient(${angle}deg, hsla(${hue1}, ${saturation}%, ${lightness}%, 0.9), hsla(${hue2}, ${saturation}%, ${lightness - 10}%, 0.9))`;
+        }
+        
+        // 更换所有颜色函数
+        function changeAllColors() {
+            // 1. 更换页面背景色
+            const pageHue = Math.floor(Math.random() * 360);
+            const pageSaturation = 60 + Math.floor(Math.random() * 30);
+            const pageLightness = 40 + Math.floor(Math.random() * 30);
+            const pageColor1 = `hsl(${pageHue}, ${pageSaturation}%, ${pageLightness}%)`;
+            const pageColor2 = `hsl(${(pageHue + 60) % 360}, ${pageSaturation}%, ${pageLightness - 10}%)`;
+            document.body.style.background = `linear-gradient(135deg, ${pageColor1} 0%, ${pageColor2} 100%)`;
+            
+            // 2. 更换标题区域颜色
+            const titleElement = document.querySelector('.title');
+            if (titleElement) {
+                titleElement.style.background = getRandomGradient(90);
+            }
+            
+            // 3. 更换推广链接区域颜色
+            const promoItems = document.querySelectorAll('.promo-item');
+            promoItems.forEach(item => {
+                const gradient = getRandomGradient(90);
+                item.style.background = gradient;
+                
+                // 更新CSS变量
+                const hue1 = Math.floor(Math.random() * 360);
+                const hue2 = (hue1 + 60) % 360;
+                item.style.setProperty('--icon-color1', `hsl(${hue1}, 70%, 60%)`);
+                item.style.setProperty('--icon-color2', `hsl(${hue2}, 70%, 50%)`);
+            });
+            
+            // 4. 更换推广链接图标颜色
+            const promoIcons = document.querySelectorAll('.promo-icon');
+            promoIcons.forEach(icon => {
+                const hue1 = Math.floor(Math.random() * 360);
+                const hue2 = (hue1 + 60) % 360;
+                icon.style.setProperty('--icon-color1', `hsl(${hue1}, 70%, 60%)`);
+                icon.style.setProperty('--icon-color2', `hsl(${hue2}, 70%, 50%)`);
+            });
+            
+            // 5. 更换推广链接标题颜色
+            const promoTitles = document.querySelectorAll('.promo-title');
+            promoTitles.forEach(title => {
+                title.style.color = getRandomColor();
+            });
+            
+            // 6. 更换推广链接描述颜色
+            const promoDescs = document.querySelectorAll('.promo-desc');
+            promoDescs.forEach(desc => {
+                desc.style.color = getRandomColor();
+            });
+            
+            // 7. 更换箭头颜色
+            const promoArrows = document.querySelectorAll('.promo-arrow');
+            promoArrows.forEach(arrow => {
+                arrow.style.color = getRandomColor();
+            });
+            
+            // 8. 更换点击提示颜色
+            const clickHints = document.querySelectorAll('.click-hint');
+            clickHints.forEach(hint => {
+                hint.style.color = getRandomColor();
+            });
+            
+            // 只在控制台输出信息（用户看不到）
+            const now = new Date();
+            console.log(`页面所有容器颜色已更换 (${now.toLocaleTimeString()})，下一次更换将在10分钟后`);
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 根据设备性能调整效果
+            const isMobile = window.innerWidth <= 768;
+            const isLowPerformance = navigator.hardwareConcurrency <= 2 || 
+                                     (navigator.deviceMemory && navigator.deviceMemory <= 2);
+            
+            // 初始化烟花效果（在低性能设备或移动设备上减少效果）
+            if (!isMobile && !isLowPerformance) {
+                fireworksInstance = new OptimizedFireworks();
+                
+                // 每60秒自动触发一次烟花
+                setInterval(() => {
+                    if (fireworksInstance && fireworksInstance.autoFireworks) {
+                        fireworksInstance.trigger();
+                    }
+                }, 60000);
+            } else {
+                // 低性能设备不显示烟花
+                console.log('设备性能较低，已禁用烟花效果以提升性能');
+                document.getElementById('fireworks-canvas').style.display = 'none';
+            }
+            
+            // 初始化自动颜色更换
+            initAutoColorChange();
+            
+            // 为所有推广链接容器添加点击事件
+            const promoItems = document.querySelectorAll('.promo-item');
+            promoItems.forEach(item => {
+                // 添加触摸设备支持
+                item.addEventListener('touchstart', function() {
+                    this.style.transform = 'translateY(-5px) scale(0.98)';
+                });
+                
+                item.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                });
+                
+                // 添加键盘支持
+                item.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        const url = this.getAttribute('data-url');
+                        if (url) tourl(url);
+                    }
+                });
+                
+                // 添加点击统计（可选）
+                item.addEventListener('click', function() {
+                    console.log('推广链接被点击:', this.querySelector('.promo-title').textContent);
+                    
+                    // 添加点击动画效果
+                    this.style.boxShadow = '0 0 30px rgba(255, 255, 255, 0.6)';
+                    setTimeout(() => {
+                        this.style.boxShadow = '';
+                    }, 300);
+                    
+                    // 点击链接时触发小型烟花效果（仅在烟花效果启用时）
+                    if (fireworksInstance) {
+                        const rect = this.getBoundingClientRect();
+                        const x = rect.left + rect.width / 2;
+                        const y = rect.top + rect.height / 2;
+                        fireworksInstance.createFirework(x, y);
+                    }
+                });
+            });
+            
+            // 为可点击元素添加键盘焦点支持
+            promoItems.forEach(item => {
+                item.setAttribute('tabindex', '0');
+            });
+        });
+    </script>
 </body>
 </html>
