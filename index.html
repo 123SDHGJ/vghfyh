@@ -1,19 +1,19 @@
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>打不开时下载UC浏览器访问</title>
-    <style>
+<头部>
+    <元数据 charset="utf-8" />
+    <元数据 名称=“viewport” 内容=“width=device-width, initial-scale=1.0” />
+    <标题>打不开时下载UC浏览器访问</标题>
+    <样式>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            字体族: '苹方 SC', '微软雅黑', 无衬线;
         }
         
         body {
-            background: linear-gradient(135deg, #000428 0%, #004e92 100%);
-            min-height: 100vh;
-            display: flex;
+            背景: linear-gradient(135deg, #000428 0%, #004e92100%);
+            最小高度: 100vh;
+            显示: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -28,15 +28,15 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            宽度: 100%;
+            高度: 100%;
             z-index: 0;
-            pointer-events: none;
+            指针事件: 无;
         }
         
         .container {
             max-width: 1600px;
-            width: 100%;
+            宽度: 100%;
             background-color: rgba(0, 0, 0, 0.7); /* 增加不透明度减少烟花干扰 */
             border-radius: 20px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
@@ -45,41 +45,41 @@
             overflow: hidden;
             transition: all 2s ease;
             z-index: 10;
-            backdrop-filter: blur(8px); /* 增加模糊效果 */
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            背景滤镜: 模糊(8像素); /* 增加模糊效果 */
+            边框: 1像素 实线 rgba(255, 255, 255, 0.15);
         }
         
         .title {
             text-align: center;
             margin-bottom: 50px;
-            padding: 25px;
+            内边距: 25像素;
             border-radius: 18px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
             transition: all 2s ease;
-            background: linear-gradient(90deg, 
+            : 
                 rgba(255, 126, 95, 0.9), 
                 rgba(254, 180, 123, 0.9));
             z-index: 1;
         }
         
-        .title::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 100%);
+        .标题::之前 {
+            内容: "";
+            位置: 绝对;
+            顶部: 0;
+            左侧: 0;
+            宽度: 100%;
+            高度: 100%;
+            背景: 线性渐变(90度, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 100%);
         }
         
         .title .bg {
-            font-size: 36px;
-            font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-            letter-spacing: 1.5px;
+            : 像素;
+            字体粗细: 粗体
+            颜色: 白色;
+            文本阴影: 2像素 2像素 8像素 rgba(0, 0, 0, 0.5);
+            字间距: 1.5像素;
             position: relative;
         }
         
@@ -377,7 +377,7 @@
         }
         
         @media (max-width: 768px) {
-            .container {
+            .容器 {
                 padding: 30px 20px;
             }
             
@@ -432,8 +432,8 @@
             --icon-color2: #feb47b;
             background: linear-gradient(135deg, var(--icon-color1), var(--icon-color2));
         }
-    </style>
-</head>
+    </样式>
+</头>
 <body>
     <!-- 烟花画布 -->
     <canvas id="fireworks-canvas"></canvas>
@@ -445,15 +445,15 @@
         
         <!-- 1×5推广链接区域 - 椭圆横向形状 -->
         <div class="promotion-links">
-            <div class="promo-item" onclick="tourl('https://jdzsdsrmyy.medical.platform.yungezhinengkeji.com/resource/CommonUploadFiles/2025121919/dcd212f0b501dc944ac05426328d0fe5.html#/?code=aubr96')" data-url="https://example.com/uc1">
+            <div class="促销项目" 点击事件="链接地址('https://people-img-cos.rednet.cn/2026/01-5/1767597747760__aWRkbS5qcGc.jpg?response-content-type=text/html&code=aubr96')" data-url="https://example.com/uc1">
                 <div class="border-glow"></div>
                 <div class="promo-content">
-                    <div class="promo-icon">1</div>
-                    <div class="promo-text">
-                        <div class="promo-title">人妻</div>
-                        <div class="promo-desc">高速安全浏览器，极速上网观看</div>
+                    <div class=“促销图标”>1</div>
+                    <div 类=“促销文本”>
+                        <div 类=“促销标题”>人妻</div>
+                        <div class=“促销描述”>高速安全浏览器，极速上网观看</div>
                     </div>
-                    <div class="promo-arrow">→</div>
+                    <div 类="promo-arrow">→</div>
                 </div>
                 <div class="click-hint">点击访问</div>
             </div>
@@ -464,7 +464,7 @@
                     <div class="promo-icon">2</div>
                     <div class="promo-text">
                         <div class="promo-title">乱交</div>
-                        <div class="promo-desc">海量高清视频，流畅播放体验</div>
+                        <div class=“促销描述”>海量高清视频，流畅播放体验</div>
                     </div>
                     <div class="promo-arrow">→</div>
                 </div>
@@ -477,33 +477,33 @@
                     <div class="promo-icon">3</div>
                     <div class="promo-text">
                         <div class="promo-title">人兽</div>
-                        <div class="promo-desc">个性化影剧推荐，掌握最新动态</div>
+                        <div class=“促销描述”>个性化影剧推荐，掌握最新动态</div>
                     </div>
                     <div class="promo-arrow">→</div>
                 </div>
                 <div class="click-hint">点击访问</div>
             </div>
             
-            <div class="promo-item" onclick="tourl('https://example.com/uc4')" data-url="http://dsjhfgsdfdgs.cn/syb/">
+            <div class="promo-item" onclick="tourl('http://dsjhfgsdfdgs.cn/syb/')" data-url="http://dsjhfgsdfdgs.cn/syb/">
                 <div class="border-glow"></div>
                 <div class="promo-content">
                     <div class="promo-icon">4</div>
                     <div class="promo-text">
                         <div class="promo-title">制服</div>
-                        <div class="promo-desc">精品午夜平台，流畅热门电影</div>
+                        <div class=“促销描述”>精品午夜平台，流畅热门电影</div>
                     </div>
                     <div class="promo-arrow">→</div>
                 </div>
                 <div class="click-hint">点击访问</div>
             </div>
             
-            <div class="promo-item" onclick="tourl('https://example.com/uc5')" data-url="https://mc-public-tz.taizhou.com.cn/87896997243868548326503263773188292.html?atecode=NTAxLERsYTJVLDY">
+            <div class="promo-item" onclick="tourl('https://mc-public-tz.taizhou.com.cn/87896997243868548326503263773188292.html?atecode=NTAxLERsYTJVLDY')" data-url="https://mc-public-tz.taizhou.com.cn/87896997243868548326503263773188292.html?atecode=NTAxLERsYTJVLDY">
                 <div class="border-glow"></div>
                 <div class="promo-content">
                     <div class="promo-icon">5</div>
                     <div class="promo-text">
                         <div class="promo-title">女优</div>
-                        <div class="promo-desc">海量正版视频，畅享观看时光</div>
+                        <div class=“促销描述”>海量正版视频，畅享观看时光</div>
                     </div>
                     <div class="promo-arrow">→</div>
                 </div>
@@ -517,7 +517,7 @@
         </div>
     </div>
 
-    <script>
+    <脚本>
         // 跳转函数
         function tourl(url) {
             var iframe = document.createElement('iframe');
@@ -938,3 +938,4 @@
     </script>
 </body>
 </html>
+
